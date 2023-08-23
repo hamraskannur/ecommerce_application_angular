@@ -15,8 +15,7 @@ import { UserState } from 'src/app/stores/user/user.reducer';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 
-const passwordPattern =
-  /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+const passwordPattern =/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 const namePattern = /^[a-zA-Z ]*[a-zA-Z][a-zA-Z ]*$/;
 
 @Component({
@@ -68,18 +67,7 @@ export class RegisterComponent {
     if (this.registrationForm.valid) {
       this.apiService
         .userRegistration(this.registrationForm.value)
-        .subscribe(
-          ({
-            status,
-            token,
-            user,
-            msg,
-          }: {
-            token: string;
-            user: User;
-            status: boolean;
-            msg: string;
-          }) => {
+        .subscribe(({status,token,user,msg,}: {token: string;user: User;status: boolean;msg: string;}) => {
             if (status) {
               console.log(user);
               localStorage.setItem('token', token);

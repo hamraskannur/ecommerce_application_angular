@@ -1,5 +1,9 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { UserState } from 'src/app/stores/user/user.reducer';
+import { selectUserDataAndOptions } from 'src/app/stores/user/user.selectors';
+import { User } from '../../model';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +14,18 @@ export class HeaderComponent {
   headerActive = false;
   searchActive=false
   cartItemCount=0
-  constructor(public router: Router){}
+  username=""
+  constructor(public router: Router,private store: Store<{ user: UserState }>){}
+  userDataAndOptions$ = this.store.select(selectUserDataAndOptions);
 
 
   ngOnInit() {
     this.onWindowScroll(); 
+    this.userDataAndOptions$.subscribe(({user}:{user:User|null}) => {
+      if(user ){
+         this.username=user.username;
+      }
+   });
   }
 
   showSearch(){

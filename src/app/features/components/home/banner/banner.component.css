@@ -44,6 +44,8 @@ section {
     height: 25rem;
     padding: 2rem;
     width: 50rem;
+    border-radius: 45%;
+
   }
   
   .image:hover {

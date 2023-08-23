@@ -1,6 +1,6 @@
 <header class="header" >
     <div class="header-1">
-      <a class="logo" style="cursor: pointer;" routerLink="/home"><i class="fas fa-book"  ></i> masoodly</a>
+      <a class="logo" style="cursor: pointer;" routerLink="/home"><i class="fas fa-shopping-cart"  ></i> masoodly</a>
       <form *ngIf="!(router.url === '/cart' || router.url === '/404') " action="" class="search-Form" [ngClass]="{ 'active': searchActive }">
         <input type="search" placeholder="search here..." id="search-box" />
         <label for="search-box" class="fas fa-search"></label>
@@ -11,16 +11,16 @@
             <a class="fas fa-shopping-cart" routerLink="/cart"></a>
             <span class="cart-count" routerLink="'/cart'" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
         </div>
-        <h4 class="mt-2 ">hamras k k</h4>
+        <h4 class="mt-2 ">{{username}}</h4>
       </div>
     </div>
 
     <div class="header-2" [ngClass]="{ 'active': headerActive }">
       <nav class="navbar">
         <a routerLink="/">home</a>
-        <a routerLink="/books">Books</a>
-        <a>arrivals</a>
-        <a>reviews</a>
+        <a routerLink="/home/jewelery">jewelery</a>
+        <a routerLink="/home/cloth">cloth</a>
+        <a routerLink="/home/electronics">electronics</a>
         <a>contact</a>
       </nav>
     </div>
