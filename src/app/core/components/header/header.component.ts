@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { UserState } from 'src/app/stores/user/user.reducer';
 import { selectUserDataAndOptions } from 'src/app/stores/user/user.selectors';
 import { User } from '../../model';
+import { CartService } from 'src/app/features/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent {
   searchActive=false
   cartItemCount=0
   username=""
-  constructor(public router: Router,private store: Store<{ user: UserState }>){}
+  constructor(public router: Router,private store: Store<{ user: UserState }>,private CartService:CartService){}
   userDataAndOptions$ = this.store.select(selectUserDataAndOptions);
 
 
@@ -26,6 +27,9 @@ export class HeaderComponent {
          this.username=user.username;
       }
    });
+   this.CartService.getCartItemCount().subscribe((count) => {
+    this.cartItemCount = count; 
+  });
   }
 
   showSearch(){

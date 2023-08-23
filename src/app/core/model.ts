@@ -6,6 +6,8 @@ export interface Product {
   price: number;
   rating: { rate: number; count: number };
   title: string;
+  quantity:number
+  addedToCart:boolean
 }
 
 export interface User {

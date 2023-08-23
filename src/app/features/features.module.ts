@@ -9,7 +9,12 @@ import { CoreModule } from '../core/core.module';
 import { BannerComponent } from './components/home/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardComponent } from './components/home/card/card.component';
+import { FooterComponent } from './components/home/footer/footer.component';
+import { CartComponent } from './components/cart/cart.component';
+import { OneCartComponent } from './components/cart/one-cart/one-cart.component';
+import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.component';
 
 
 
@@ -19,19 +24,26 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     HomeComponent,
     BannerComponent,
+    CardComponent,
+    FooterComponent,
+    CartComponent,
+    OneCartComponent,
+    EmptyCartComponent,
   ],
   imports: [
+    FormsModule,
     RouterModule,
     HttpClientModule,
     BrowserModule,
     FeaturesRoutingModule,
     CoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports:[
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    FormsModule
   ],
   providers: [],
 })

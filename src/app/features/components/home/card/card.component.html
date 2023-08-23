@@ -1,0 +1,20 @@
+<div class="cards">
+    <div class="card"  *ngFor="let product of products">
+
+  <div class="item">
+    <div class="img-box">
+      <img
+        [src]="product.image"
+        alt="Awesome Sunglasses"
+      />
+    </div>
+    <div class="details">
+      <h2>{{product.title}}<br /><span>{{product.category}}</span></h2>
+      <div class="price">{{product.price|currency}}</div>
+      
+     
+      <a  (click)="addToCart(product)">Add to cart</a>
+    </div>
+  </div>
+</div>
+</div>

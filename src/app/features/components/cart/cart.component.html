@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<div class="card ">
+    <div class="row" *ngIf="cartItem.length>0 else empty">
+        <div class="col-md-12 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col"><h4><img src="../../../assets/img/cart.svg" alt=""><b>Shopping Cart</b></h4></div>
+                    <div class="col align-self-center text-right text-muted">{{cartItem.length}} items</div>
+                </div>
+            </div>    
+            <div class="row border-top border-bottom">
+            </div>
+            <app-one-cart *ngFor="let cart of cartItem let i = index" [index]="i" [cart]="cart"></app-one-cart>
+            <button class="btn">CHECKOUT</button>
+            <div style="cursor: pointer;" class="back-to-shop" [routerLink]="'/home'"><a >&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+        </div>
+    </div>
+    <ng-template #empty>
+        <app-empty-cart></app-empty-cart>
+    </ng-template>
+    </div>
+
+    <div class="footer">
+
+        <app-footer  ></app-footer>
+    </div>

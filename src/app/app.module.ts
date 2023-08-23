@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { UserStateModule } from './stores/state.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/token-intercepter.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AuthInterceptor } from './core/interceptors/token-intercepter.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    UserStateModule
+    UserStateModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {
