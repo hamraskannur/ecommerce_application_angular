@@ -2,22 +2,68 @@
     <div class="container">
         <div class="screen">
             <div class="screen__content">
-                <form class="login">
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()"  class="login">
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>
-                        <input type="text" class="login__input" placeholder="Email">
+                        <input type="email" autocomplete="email" class="login__input" formControlName="email" name="email" placeholder="Email">
+                    </div>                  
+                    <div  *ngIf="f.email.errors && submit" style="color: red; " >
+                        <small *ngIf="f.email.errors['required']"  >
+                           email is required
+                         </small> 
+                         <small *ngIf=" f.email.errors['email']">
+                           invalid E-mail, Please enter correctly
+                         </small>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" class="login__input"  formControlName="username" name="username" placeholder="User name">
+                    </div>
+                    <div  *ngIf="f.username.errors && submit" style="color: red; " >
+                        <small *ngIf="f.username.errors['required']"  >
+                           email is required
+                         </small> 
+                         <small *ngIf=" f.username.errors['pattern']">
+                            Required some word
+                         </small>
                     </div>
                     <div class="login__field">
                         <i class="login__icon fas fa-lock"></i>
-                        <input type="password" class="login__input" placeholder="Password">
+                        <input   type="{{ passwordShown ? 'text' : 'password' }}" class="login__input"  formControlName="password" name="password" placeholder="Password">
+                        <img
+                        (click)="togglePasswordVisibility()"
+                        [src]="
+                          passwordShown
+                            ? 'https://cdn-icons-png.flaticon.com/512/565/565655.png'
+                            : 'https://cdn-icons-png.flaticon.com/512/6684/6684701.png'
+                        "
+                        [class]="
+                        passwordShown
+                          ? 'image1'
+                          : 'image'
+                      "
+                        alt=""
+                      />
                     </div>
+                    <div style="color: red;" *ngIf="submit && f.password.errors"                  >
+                    <small *ngIf="f.password.errors['required']">
+                      password is required
+                    </small>
+                    <small *ngIf="f.password.errors['pattern']">
+                      Password contain minimum 6 letters and combination of
+                      Alphabets and numbers and a special character
+                    </small>
+                  </div>
+                  <small *ngIf="ErrMessage" style="color: red;">
+                   {{ErrMessage}}
+                  </small>
+                  
                     <button class="button login__submit">
                         <span class="button__text">register In Now</span>
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>
                 </form>
                 <a routerLink="/login">
-
                     <div class="social-login">
                         <h3 style="cursor: pointer;">Have an account? Login</h3>
                     </div>

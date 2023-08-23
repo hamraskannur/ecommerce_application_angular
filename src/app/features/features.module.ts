@@ -9,6 +9,7 @@ import { CoreModule } from '../core/core.module';
 import { BannerComponent } from './components/home/banner/banner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     FeaturesRoutingModule,
     CoreModule,
+    ReactiveFormsModule
   ],
   exports:[
     LoginComponent,
