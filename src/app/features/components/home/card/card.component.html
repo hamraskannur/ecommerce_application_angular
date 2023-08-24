@@ -1,20 +1,32 @@
 <div class="cards">
-    <div class="card"  *ngFor="let product of products">
+  <div class="card" *ngFor="let product of products">
+    <div class="item">
+      <div class="img-box">
+        <img [src]="product.image" alt="Awesome Sunglasses" />
+      </div>
+      <div class="details">
+        <h2>
+          {{ product.title }}<br /><span>{{ product.category }}</span>
+        </h2>
+        <div class="price">{{ product.price | currency }}</div>
 
-  <div class="item">
-    <div class="img-box">
-      <img
-        [src]="product.image"
-        alt="Awesome Sunglasses"
-      />
-    </div>
-    <div class="details">
-      <h2>{{product.title}}<br /><span>{{product.category}}</span></h2>
-      <div class="price">{{product.price|currency}}</div>
-      
-     
-      <a  (click)="addToCart(product)">Add to cart</a>
+        <a
+          *ngIf="!product.addedToCart; else added"
+          class="text-white"
+          (click)="addToCart(product)"
+          >Add to cart</a
+        >
+
+        <ng-template #added>
+          <a class="text-white  " (click)="addToCart(product)">
+            <img
+              class="icon"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzmOMLSUID7E9evtFv3_g2Rd0oIUUvkw_rqw&usqp=CAU"
+            />
+            added</a
+          >
+        </ng-template>
+      </div>
     </div>
   </div>
-</div>
 </div>

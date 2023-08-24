@@ -10,6 +10,7 @@ import { UserStateModule } from './stores/state.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/token-intercepter.service';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorHandlingInterceptor } from './core/interceptors/errorHandintercepter.service';
 
 
 @NgModule({
@@ -29,6 +30,11 @@ import { ToastrModule } from 'ngx-toastr';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlingInterceptor,
       multi: true
     }
   ],
