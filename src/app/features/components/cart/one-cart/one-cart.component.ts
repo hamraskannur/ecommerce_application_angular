@@ -14,7 +14,11 @@ export class OneCartComponent {
 
   constructor(private CartService:CartService){}
   ngOnInit() {
-    this.quantity = this.cart.quantity ?? 1;
+    if(this.cart.quantity){
+      this.quantity = this.cart.quantity 
+    }else{
+      this.quantity =1
+    }
   }
   decrement(id:number) {
     if (this.quantity !== 1) {
