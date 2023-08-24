@@ -4,15 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
 import { BannerComponent } from './banner/banner.component';
-import { ApiService } from '../../services/api.service';
 import { provideMockStore } from '@ngrx/store/testing';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { ToastrServices } from '../../services/toastr.service';
+import { ToastrModule } from 'ngx-toastr';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
 import { ActivatedRoute } from '@angular/router';
-import { CustomFilterPipe } from 'src/app/shared/pipe/custom-filter.pipe';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
@@ -27,18 +23,15 @@ describe('HomeComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [HttpClientModule,SharedModule,FormsModule, ToastrModule.forRoot()], // Add HttpClientModule here
+      imports: [HttpClientModule,FormsModule, ToastrModule.forRoot()], // Add HttpClientModule here
       declarations: [
         HomeComponent,
-        CustomFilterPipe,
         HeaderComponent,
+        FooterComponent,
         BannerComponent,
         CardComponent,
-        FooterComponent,
       ],
       providers: [
-        ApiService,
-        ToastrServices,
         provideMockStore({}),
         { provide: ActivatedRoute, useValue: activatedRouteMock }, // Provide the ActivatedRoute mock
       ],

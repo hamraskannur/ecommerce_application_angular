@@ -18,6 +18,7 @@ import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.comp
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { CheckCartDirective } from '../shared/directives/check-cart.directive';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 
@@ -33,6 +34,7 @@ import { CheckCartDirective } from '../shared/directives/check-cart.directive';
     OneCartComponent,
     EmptyCartComponent,
     ProductDetailsComponent,
+    ContactComponent,
     
   ],
   imports: [
