@@ -1,0 +1,53 @@
+<app-header ></app-header>
+
+<div *ngIf="product" class="container  mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="images p-3">
+                <div class="text-center p-4">
+                  <img
+                    
+                    id="main-image"
+                    [src]="product.image"
+                    width="250"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 mt-5">
+              <div class="product p-4">
+               
+                <div class="mt-4 mb-3">
+                    <h5 class="text-uppercase" class="text">title : {{product.title }}</h5>
+                  <span class="text-uppercase text-muted brand" class="text">category : {{product.category}}</span>
+                  <div class="price d-flex flex-row align-items-center">
+                    <div class="ml-2">
+                      <strong class="text">price : {{product.price|currency}}</strong>
+                    </div>
+                  </div>
+                  <span class="text-uppercase  brand" class="about">rate : {{product.rating.rate}} count : {{product.rating.count}}</span>
+                </div>
+                <p class="about">
+                  subtitle : {{product.description}}.
+                </p>
+                
+                <div class="cart mt-4 align-items-center">
+                  <button [disabled]="product.addedToCart" (click)="addToCart(product)" class="btn button text-uppercase mr-2 px-4">
+                     {{product.addedToCart ?"Added" :"Add to cart"}}
+                  </button>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+
+    <app-footer  ></app-footer>
+</div>

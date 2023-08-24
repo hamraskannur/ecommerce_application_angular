@@ -1,6 +1,6 @@
-<app-header></app-header>
-<app-banner></app-banner>
-    <app-card  ></app-card>
+<app-header (searchData)="searchDataFromChild($event)"></app-header >
+<app-banner ></app-banner>
+    <app-card  [searchData]="searchData"></app-card>
 
 <div class="footer">
 

@@ -10,27 +10,37 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ToastrServices } from '../../services/toastr.service';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
+import { ActivatedRoute } from '@angular/router';
+import { CustomFilterPipe } from 'src/app/shared/pipe/custom-filter.pipe';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { of } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let toastrServiceMock: Partial<ToastrServices>; // Using a partial mock
+  let activatedRouteMock: any; // Declare ActivatedRoute mock
 
   beforeEach(() => {
+    activatedRouteMock = {
+      paramMap: of({ get: (param: string) => 'some_category' }) // Mock the paramMap observable
+    };
+
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, ToastrModule.forRoot()], // Add HttpClientModule here
+      imports: [HttpClientModule,SharedModule,FormsModule, ToastrModule.forRoot()], // Add HttpClientModule here
       declarations: [
         HomeComponent,
+        CustomFilterPipe,
         HeaderComponent,
         BannerComponent,
         CardComponent,
-        FooterComponent
+        FooterComponent,
       ],
       providers: [
         ApiService,
+        ToastrServices,
         provideMockStore({}),
-        { provide: ToastrServices, useValue: toastrServiceMock }, // Provide the mock ToastrService
-        ToastrService,
+        { provide: ActivatedRoute, useValue: activatedRouteMock }, // Provide the ActivatedRoute mock
       ],
     });
     fixture = TestBed.createComponent(HomeComponent);

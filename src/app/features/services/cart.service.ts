@@ -73,7 +73,7 @@ export class CartService {
     return this.cartItemCount.asObservable();
   }
 
-  isBookInCart(isbn: number): boolean {
+  isProductInCart(isbn: number): boolean {
     return this.cartProduct.some((book) => book.id === isbn);
   }
 }

@@ -4,6 +4,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { HeaderComponent } from './header.component';
 import { ToastrServices } from 'src/app/features/services/toastr.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -13,6 +14,7 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
+      imports: [FormsModule], // Include FormsModule
       providers: [
         provideMockStore({}),
         { provide: ToastrServices, useValue: toastrServiceMock }, // Provide the mock ToastrService

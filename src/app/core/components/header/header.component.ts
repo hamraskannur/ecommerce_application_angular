@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserState } from 'src/app/stores/user/user.reducer';
@@ -16,6 +16,9 @@ export class HeaderComponent {
   searchActive=false
   cartItemCount=0
   username=""
+  searchTermWord=""
+  @Output() searchData: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(public router: Router,private store: Store<{ user: UserState }>,private CartService:CartService){}
   userDataAndOptions$ = this.store.select(selectUserDataAndOptions);
 
@@ -34,6 +37,13 @@ export class HeaderComponent {
 
   showSearch(){
     this.searchActive=!this.searchActive;
+  }
+
+  
+  searchTerm(): void {
+    console.log(this.searchTermWord);
+    
+    this.searchData.emit(this.searchTermWord); // Emit the event with the data
   }
 
 

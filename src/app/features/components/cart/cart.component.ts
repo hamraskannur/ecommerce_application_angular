@@ -14,5 +14,5 @@ export class CartComponent {
   ngOnInit() {
    this.cartItem= this.CartService.getCartItems()
   }
-  
+
 }

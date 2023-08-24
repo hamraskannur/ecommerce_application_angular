@@ -98,6 +98,9 @@ ul li {
   color: #bbb;
   transition: 0.7s;
 }
+.image{
+  background-color:#fff;
+}
 
 ul li:hover {
   cursor: pointer;

@@ -15,6 +15,9 @@ import { FooterComponent } from './components/home/footer/footer.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OneCartComponent } from './components/cart/one-cart/one-cart.component';
 import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { SharedModule } from '../shared/shared.module';
+import { CheckCartDirective } from '../shared/directives/check-cart.directive';
 
 
 
@@ -29,8 +32,11 @@ import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.comp
     CartComponent,
     OneCartComponent,
     EmptyCartComponent,
+    ProductDetailsComponent,
+    
   ],
   imports: [
+    SharedModule,
     FormsModule,
     RouterModule,
     HttpClientModule,

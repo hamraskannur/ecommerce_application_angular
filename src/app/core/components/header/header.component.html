@@ -2,7 +2,7 @@
     <div class="header-1">
       <a class="logo" style="cursor: pointer;" routerLink="/home"><i class="fas fa-shopping-cart"  ></i> masoodly</a>
       <form *ngIf="!(router.url === '/cart' || router.url === '/404') " action="" class="search-Form" [ngClass]="{ 'active': searchActive }">
-        <input type="search" placeholder="search here..." id="search-box" />
+        <input type="search" placeholder="search here..." [(ngModel)]="searchTermWord" name="searchInput" (ngModelChange)="searchTerm()" id="search-box" />
         <label for="search-box" class="fas fa-search"></label>
       </form>
       <div class="forflex">
@@ -19,7 +19,7 @@
       <nav class="navbar">
         <a routerLink="/">home</a>
         <a routerLink="/home/jewelery">jewelery</a>
-        <a routerLink="/home/cloth">cloth</a>
+        <a routerLink="/home/women's clothing">cloth</a>
         <a routerLink="/home/electronics">electronics</a>
         <a>contact</a>
       </nav>

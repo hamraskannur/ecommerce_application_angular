@@ -16,6 +16,9 @@ export class ApiService {
     return this.http.get<Product[]>(`${this.Api}`)
   }
 
+  getCategoryProducts=(category:string): Observable<Product[]> =>{
+    return this.http.get<Product[]>(`${this.Api}/category/${category}`)
+  }
   userRegistration=(userData:object): Observable<{token:string,user:User,status:boolean,msg:string}> =>{
     return this.http.post<{token:string,user:User,status:boolean,msg:string}>(`${this.serverApi}signup`,userData)
   }
@@ -25,5 +28,9 @@ export class ApiService {
 
   getUser=(): Observable<User> =>{
     return this.http.get<User>(`${this.serverApi}me`)
+  }
+
+  getProductDetails=(id:number): Observable<Product> =>{
+    return this.http.get<Product>(`${this.Api}/${id}`)
   }
 }

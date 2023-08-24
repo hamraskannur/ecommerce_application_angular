@@ -8,6 +8,7 @@ import { FooterComponent } from '../home/footer/footer.component';
 import { StoreModule } from '@ngrx/store';
 import { OneCartComponent } from './one-cart/one-cart.component';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
+import { FormsModule } from '@angular/forms';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -16,7 +17,8 @@ describe('CartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[StoreModule.forRoot({})],
+      imports:[StoreModule.forRoot({}),FormsModule],
+
       declarations: [CartComponent,OneCartComponent,EmptyCartComponent,HeaderComponent,FooterComponent],
       providers: [{ provide: ToastrServices, useValue: toastrServiceMock }, ToastrService]
     });
