@@ -6,14 +6,14 @@ import { ToastrModule } from 'ngx-toastr';
 
 describe('CartService', () => {
   let service: CartService;
-  let toastrServiceMock: Partial<ToastrServices>; // Using a partial mock
+  let toastrServiceMock: Partial<ToastrServices>; 
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ToastrModule.forRoot()],
       providers: [
         CartService,
-        { provide: ToastrServices, useValue: toastrServiceMock }, // Provide the mock ToastrService
+        { provide: ToastrServices, useValue: toastrServiceMock },
       ],
     });
     service = TestBed.inject(CartService);

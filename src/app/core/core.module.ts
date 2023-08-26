@@ -9,9 +9,8 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-  
     HeaderComponent,
-       FooterComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   exports:[
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [],
 })

@@ -9,16 +9,15 @@ import { FormsModule } from '@angular/forms';
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let toastrServiceMock: Partial<ToastrServices>; // Using a partial mock
+  let toastrServiceMock: Partial<ToastrServices>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      imports: [FormsModule], // Include FormsModule
+      imports: [FormsModule], 
       providers: [
         provideMockStore({}),
-        { provide: ToastrServices, useValue: toastrServiceMock }, // Provide the mock ToastrService
-        ToastrService,
+        { provide: ToastrServices, useValue: toastrServiceMock },
       ],
     });
     fixture = TestBed.createComponent(HeaderComponent);
@@ -29,4 +28,22 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit search term on searchTerm()', () => {
+    const searchTermWord = 'test search term';
+    spyOn(component.searchData, 'emit');
+    component.searchTermWord = searchTermWord;
+    component.searchTerm();
+    expect(component.searchData.emit).toHaveBeenCalledWith(searchTermWord);
+  });
+
+  it('should toggle searchActive on showSearch()', () => {
+    component.searchActive = false;
+    component.showSearch();
+    expect(component.searchActive).toBe(true);
+
+    component.showSearch();
+    expect(component.searchActive).toBe(false);
+  });
+
 });

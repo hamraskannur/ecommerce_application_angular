@@ -52,6 +52,7 @@ describe('LoginComponent', () => {
   });
   
   it('should submit registration form', () => {
+    
     component.loginForm.setValue({
       email: 'test@example.com',
       password: 'Test@123',
@@ -63,6 +64,7 @@ describe('LoginComponent', () => {
       email: 'test@example.com',
       password: 'Test@123',
     });
+    
     expect(component.ErrMessage).toBe(null);
   });
 });

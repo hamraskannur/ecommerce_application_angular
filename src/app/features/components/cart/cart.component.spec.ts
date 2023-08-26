@@ -4,11 +4,11 @@ import { CartComponent } from './cart.component';
 import { ToastrServices } from '../../services/toastr.service';
 import { ToastrService } from 'ngx-toastr';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { FooterComponent } from '../home/footer/footer.component';
 import { StoreModule } from '@ngrx/store';
 import { OneCartComponent } from './one-cart/one-cart.component';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from 'src/app/core/components/footer/footer.component';
 
 describe('CartComponent', () => {
   let component: CartComponent;

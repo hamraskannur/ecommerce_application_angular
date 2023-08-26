@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './components/home/card/card.component';
-import { FooterComponent } from './components/home/footer/footer.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OneCartComponent } from './components/cart/one-cart/one-cart.component';
 import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.component';
@@ -29,7 +28,6 @@ import { ContactComponent } from './components/contact/contact.component';
     HomeComponent,
     BannerComponent,
     CardComponent,
-    FooterComponent,
     CartComponent,
     OneCartComponent,
     EmptyCartComponent,
@@ -38,13 +36,13 @@ import { ContactComponent } from './components/contact/contact.component';
     
   ],
   imports: [
+    CoreModule,
     SharedModule,
     FormsModule,
     RouterModule,
     HttpClientModule,
     BrowserModule,
     FeaturesRoutingModule,
-    CoreModule,
     ReactiveFormsModule,
   ],
   exports:[

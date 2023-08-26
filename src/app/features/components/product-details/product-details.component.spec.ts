@@ -7,9 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrServices } from '../../services/toastr.service';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { FooterComponent } from '../home/footer/footer.component';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from 'src/app/core/components/footer/footer.component';
 
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
@@ -24,9 +24,7 @@ describe('ProductDetailsComponent', () => {
         { provide: ToastrServices, useValue: toastrServiceMock }, ToastrService,
         {
           provide: ActivatedRoute,
-          useValue: {
-            params: of({ id: '123' }), // Mock route parameter "id"
-          },
+          useValue: {params: of({ id: '123' })},
         },
       ],
     });

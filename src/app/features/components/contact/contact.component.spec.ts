@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactComponent } from './contact.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
-import { FooterComponent } from '../home/footer/footer.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { ToastrServices } from '../../services/toastr.service';
 import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from 'src/app/core/components/footer/footer.component';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -26,4 +26,7 @@ describe('ContactComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
 });

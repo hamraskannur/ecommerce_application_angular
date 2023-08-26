@@ -40,10 +40,8 @@ export class HeaderComponent {
   }
 
   
-  searchTerm(): void {
-    console.log(this.searchTermWord);
-    
-    this.searchData.emit(this.searchTermWord); // Emit the event with the data
+  searchTerm(): void {    
+    this.searchData.emit(this.searchTermWord); 
   }
 
 

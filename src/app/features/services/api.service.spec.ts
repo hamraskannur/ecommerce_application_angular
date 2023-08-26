@@ -23,7 +23,15 @@ describe('ApiService', () => {
 
   it('should retrieve products', () => {
     const mockProducts: Product[] = [
-      // Provide mock product data
+      {
+        id:1,
+        title:'...',
+        price:555,
+        category:'...',
+        description:'...',
+        image:'...',
+        rating:{rate: 5,count: 4 }
+    }
     ];
 
     apiService.getProducts().subscribe((products: Product[]) => {
@@ -37,32 +45,34 @@ describe('ApiService', () => {
 
   it('should register a user', () => {
     const mockUserData = {
-      // Provide mock user data
+      email:"hamraskk@gmail.com",
+      password:"ham@123",
+      username:"Hamras"
     };
 
     apiService.userRegistration(mockUserData).subscribe((response) => {
       expect(response.status).toBe(true);
-      // Add more assertions based on your response structure
     });
 
     const req = httpTestingController.expectOne(`${apiService.serverApi}signup`);
     expect(req.request.method).toEqual('POST');
-    req.flush({ status: true }); // Mock the response
+    req.flush({ status: true }); 
+
   });
 
   it('should log in a user', () => {
     const mockUserData = {
-      // Provide mock user data
+      email:"hamraskk@gmail.com",
+      password:"ham@123"
     };
 
     apiService.userLogin(mockUserData).subscribe((response) => {
       expect(response.status).toBe(true);
-      // Add more assertions based on your response structure
     });
 
     const req = httpTestingController.expectOne(`${apiService.serverApi}login`);
     expect(req.request.method).toEqual('POST');
-    req.flush({ status: true }); // Mock the response
+    req.flush({ status: true }); 
   });
 
   it('should retrieve user details', () => {

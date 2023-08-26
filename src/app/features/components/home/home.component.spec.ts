@@ -7,10 +7,10 @@ import { BannerComponent } from './banner/banner.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { CardComponent } from './card/card.component';
-import { FooterComponent } from './footer/footer.component';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from 'src/app/core/components/footer/footer.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -44,4 +44,10 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should set searchData when searchDataFromChild is called",()=>{
+    const search="test search"
+    component.searchDataFromChild(search)
+    expect(component.searchData).toEqual(search)
+  })
 });
