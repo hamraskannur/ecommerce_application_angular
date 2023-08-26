@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   AnimationBuilder,
   animate,
@@ -14,6 +14,7 @@ import { updateOptions } from 'src/app/stores/user/user.actions';
 import { UserState } from 'src/app/stores/user/user.reducer';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 const passwordPattern =/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 const namePattern = /^[a-zA-Z ]*[a-zA-Z][a-zA-Z ]*$/;
@@ -31,10 +32,11 @@ const namePattern = /^[a-zA-Z ]*[a-zA-Z][a-zA-Z ]*$/;
     ]),
   ],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy{
   submit = false;
   passwordShown = false;
   ErrMessage: string | null = null;
+  subscription1: Subscription | undefined;
   constructor(
     private store: Store<{ user: UserState }>,
     private animationBuilder: AnimationBuilder,
@@ -42,6 +44,7 @@ export class RegisterComponent {
     private router: Router,
     private apiService: ApiService
   ) {}
+
   registrationForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.pattern(namePattern)]],
     email: ['', [Validators.required, Validators.email]],
@@ -65,7 +68,7 @@ export class RegisterComponent {
   onSubmit() {
     this.submit = true;
     if (this.registrationForm.valid) {
-      this.apiService
+      this.subscription1=  this.apiService
         .userRegistration(this.registrationForm.value)
         .subscribe(({status,token,user,msg,}: {token: string;user: User;status: boolean;msg: string;}) => {
             if (status) {
@@ -80,5 +83,8 @@ export class RegisterComponent {
           }
         );
     }
+  }
+  ngOnDestroy(): void {
+    this.subscription1?.unsubscribe()
   }
 }

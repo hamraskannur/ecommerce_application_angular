@@ -1,22 +1,27 @@
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnDestroy, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserState } from 'src/app/stores/user/user.reducer';
 import { selectUserDataAndOptions } from 'src/app/stores/user/user.selectors';
 import { User } from '../../model';
 import { CartService } from 'src/app/features/services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
   headerActive = false;
   searchActive=false
   cartItemCount=0
   username=""
   searchTermWord=""
+  subscription1: Subscription | undefined;
+  subscription2: Subscription | undefined;
+
+
   @Output() searchData: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public router: Router,private store: Store<{ user: UserState }>,private CartService:CartService){}
@@ -25,12 +30,12 @@ export class HeaderComponent {
 
   ngOnInit() {
     this.onWindowScroll(); 
-    this.userDataAndOptions$.subscribe(({user}:{user:User|null}) => {
+    this.subscription1= this.userDataAndOptions$.subscribe(({user}:{user:User|null}) => {
       if(user ){
          this.username=user.username;
       }
    });
-   this.CartService.getCartItemCount().subscribe((count) => {
+   this.subscription2= this.CartService.getCartItemCount().subscribe((count) => {
     this.cartItemCount = count; 
   });
   }
@@ -50,5 +55,9 @@ export class HeaderComponent {
     this.headerActive = window.scrollY > 80;
   }
 
-  
+  ngOnDestroy(): void {
+    this.subscription1?.unsubscribe()
+    this.subscription2?.unsubscribe()
+
+  }
 }

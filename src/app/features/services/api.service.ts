@@ -33,4 +33,8 @@ export class ApiService {
   getProductDetails=(id:number): Observable<Product> =>{
     return this.http.get<Product>(`${this.Api}/${id}`)
   }
+
+  logErr=(ErrorData:object): Observable<{message:string}> =>{
+    return this.http.post<{message:string}>(`${this.serverApi}signup`,ErrorData)
+  }
 }

@@ -18,9 +18,9 @@ const routes:Routes=[
     { path: 'home/:category', component: HomeComponent },
     { path: 'contact', component: ContactComponent },
     {path:"cart",component:CartComponent ,canActivate:[userGuard]},
+    { path: 'productDetails/:id', component:ProductDetailsComponent},
     { path: 'login',component:LoginComponent,canActivate:[UserLoginGuard]},
     {path:"register",component:RegisterComponent,canActivate:[UserLoginGuard]},
-    { path: 'productDetails/:id', component:ProductDetailsComponent},
 
 ]
 

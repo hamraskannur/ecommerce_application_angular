@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ImagePair, Product } from 'src/app/core/model';
 import { ApiService } from 'src/app/features/services/api.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 declare var bootstrap: any;
 
@@ -21,9 +22,10 @@ declare var bootstrap: any;
     ]),
   ],
 })
-export class BannerComponent implements AfterViewInit {
+export class BannerComponent implements AfterViewInit ,OnDestroy{
   @ViewChild('carousel', { static: true }) carouselRef!: ElementRef<HTMLDivElement>;
   private carousel: any;
+  subscription1: Subscription | undefined;
 
   currentPairIndex = 0;
   public pairsOfImages: ImagePair[][] = [];
@@ -46,7 +48,7 @@ export class BannerComponent implements AfterViewInit {
 
   createPairsOfImages() {
     if (this.pairsOfImages.length === 0) {
-      this.ApiService.getProducts().subscribe((product: Product[]) => {
+      this.subscription1= this.ApiService.getProducts().subscribe((product: Product[]) => {
         for (let i = 0; i < product.length; i += 2) {
           const pair: ImagePair[] = [];
           if (product[i]) pair.push({ image: product[i].image, id: product[i].id });
@@ -77,5 +79,10 @@ export class BannerComponent implements AfterViewInit {
     this.currentPairIndex =
       (this.currentPairIndex + 1) % this.pairsOfImages.length;
     this.carousel.to(this.currentPairIndex);
+  }
+
+  
+  ngOnDestroy(): void {
+    this.subscription1?.unsubscribe()
   }
 }

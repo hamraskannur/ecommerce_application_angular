@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AnimationBuilder, animate,state, style, trigger, transition } from '@angular/animations';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserState } from 'src/app/stores/user/user.reducer';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { updateOptions } from 'src/app/stores/user/user.actions';
 import { User } from 'src/app/core/model';
+import { Subscription } from 'rxjs';
 
 const passwordPattern =/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
@@ -21,7 +22,7 @@ const passwordPattern =/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}
     ]),
   ],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnDestroy {
   ErrMessage: string | null = null;
   passwordShown = false;
   submit=false
@@ -32,6 +33,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private apiService: ApiService
   ) {}
+
+  subscription1: Subscription | undefined;
+
 
   loginForm=this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -54,7 +58,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submit = true;
     if (this.loginForm.valid) {
-      this.apiService
+      this.subscription1= this.apiService
         .userLogin(this.loginForm.value)
         .subscribe(({status,token,user,message}: {token: string;user: User;status: boolean;message: string;}) => {
             if (status) {
@@ -69,5 +73,7 @@ export class LoginComponent implements OnInit {
         );
     }
   }
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    this.subscription1?.unsubscribe()
+  }
 }
