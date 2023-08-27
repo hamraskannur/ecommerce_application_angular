@@ -35,6 +35,6 @@ export class ApiService {
   }
 
   logErr=(ErrorData:object): Observable<{message:string}> =>{
-    return this.http.post<{message:string}>(`${this.serverApi}signup`,ErrorData)
+    return this.http.post<{message:string}>(`${this.serverApi}logErr`,ErrorData)
   }
 }
